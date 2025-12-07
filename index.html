@@ -1,417 +1,357 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="hi">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aditya Kumar Singh | Linktree</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Linktree - (ᗩ𝐚𝐝𝐢❣️)</title>
+     <!----Favicon---->
+    <link rel="icon" type="image/png" href="./assets/Avatar-Symbol-Canopy.webp">
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0c0f16;
+            --card: #10131c;
+            --muted: #9aa6b2;
+            --radius: 16px;
+        }
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+        body {
+            background: linear-gradient(180deg, #0a0e17, #090f1d 50%, #080d18);
+            font-family: "Poppins", sans-serif;
+            color: #eef2f6;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-  <style>
-    /* 🌄 Background with subtle image + gradient overlay */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Poppins", sans-serif;
-      background: 
-        linear-gradient(rgba(30, 30, 30, 0.6), rgba(30, 30, 30, 0.7)),
-        url("https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1920&q=80");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      animation: fadeBg 10s ease infinite alternate;
-    }
+        /* Main Box */
+        .wrapper {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 28px;
+            border-radius: 22px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        }
 
-    @keyframes fadeBg {
-      0% { filter: brightness(0.9); }
-      100% { filter: brightness(1.1); }
-    }
+        /* Profile header */
+        .profile {
+            text-align: center;
+            margin-bottom: 25px;
+        }
 
-    /* 🌫️ Simplified Glassmorphism Card */
-    .main-card {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-radius: 25px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 2rem;
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-      animation: fadeUp 1s ease-in-out;
-    }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: auto;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 22px rgba(255, 255, 255, 0.05);
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+            transition: transform .3s ease;
+        }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
+        .avatar:hover {
+            transform: scale(1.07) rotate(2deg);
+        }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        @keyframes float {
 
-    /* 🧑 Profile Image */
-    .profile-photo {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      animation: zoomIn 1s ease forwards, pulse 2s infinite 1s;
-    }
+            0%,
+            100% {
+                transform: translateY(0)
+            }
 
-    @keyframes zoomIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
+            50% {
+                transform: translateY(-10px)
+            }
+        }
 
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 12px;
+        }
 
-      50% {
-        transform: scale(1.05);
-      }
+        .bio {
+            font-size: 14px;
+            margin-top: 5px;
+            color: var(--muted);
+        }
 
-      100% {
-        transform: scale(1);
-      }
-    }
+        /* Link buttons */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 28px;
+        }
 
-    /* 🌈 Glowing Animated Name */
-    .profile-name {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #ff6a00, #ee0979, #7f00ff, #00f5d4);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: textGlow 5s ease infinite, float 3s ease-in-out infinite;
-      margin-top: 15px;
-    }
+        .link {
+            background: #121722;
+            padding: 16px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: .25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
 
-    @keyframes textGlow {
-      0% {
-        background-position: 0% 50%;
-      }
+        /* New Glow + Lift Hover */
+        .link:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.12), 0 10px 30px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        }
 
-      50% {
-        background-position: 100% 50%;
-      }
+        /* Icon bubble */
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            flex-shrink: 0;
+            transition: .25s ease;
+        }
 
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+        .link:hover .icon {
+            transform: rotate(8deg) scale(1.12);
+            box-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+        }
 
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
+        /* Labels */
+        .text .title {
+            font-size: 16px;
+            font-weight: 600;
+        }
 
-      50% {
-        transform: translateY(-8px);
-      }
+        .text .sub {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 3px;
+        }
 
-      100% {
-        transform: translateY(0);
-      }
-    }
+        /* Full-color Icon Styles */
+        .fb {
+            background: #1877f2;
+        }
 
-    /* 🪶 Description Text */
-    .profile-text {
-      font-size: 1rem;
-      color: #f1f5f9;
-      line-height: 1.6;
-      opacity: 0;
-      animation: fadeIn 1.5s ease-in forwards 1s;
-    }
+        .ig {
+            background: radial-gradient(circle at 30% 30%, #feda75, #fa7e1e 30%, #d62976 60%, #962fbf 85%, #4f5bd5);
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
+        .yt {
+            background: #f5f2f2;
+        }
 
-      to {
-        opacity: 1;
-      }
-    }
+        .li {
+            background: #0a66c2;
+        }
 
-    /* ✨ Headings */
-    h2 {
-      margin-top: 30px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #ffffff, #dbeafe, #a5b4fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-      position: relative;
-      display: inline-block;
-      animation: slideIn 1s ease;
-    }
+        .sc {
+            background: #fffc00;
+        }
 
-    h2::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-      width: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #60a5fa, #93c5fd, #3b82f6);
-      animation: underline 1.5s ease forwards;
-      border-radius: 2px;
-      box-shadow: 0 0 10px rgba(96, 165, 250, 0.7);
-    }
+        .site {
+            background: #13d4a5;
+        }
 
-    @keyframes underline {
-      from {
-        width: 0;
-      }
+        .coffee {
+            background: #ffb86b;
+        }
 
-      to {
-        width: 70%;
-      }
-    }
+        /* SVG icons white */
+        .icon svg {
+            fill: #fff;
+        }
 
-    /* 🔗 Social Buttons */
-    .link-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 20px;
-      border-radius: 50px;
-      font-weight: 500;
-      color: #fff;
-      text-decoration: none;
-      margin: 10px auto;
-      width: 100%;
-      max-width: 320px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      animation: bounceIn 1s ease forwards;
-    }
-
-    .link-btn:hover {
-      transform: scale(1.05) translateY(-2px);
-      filter: brightness(1.15);
-    }
-
-    /* 🎨 Button Colors */
-    .facebook {
-      background: linear-gradient(to right, #1877f2, #3b5998);
-    }
-
-    .instagram {
-      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
-    }
-
-    .snapchat {
-      background: #fffc00;
-      color: #000;
-    }
-
-    .linkedin {
-  background: linear-gradient(45deg, #0077b5, #0e76a8, #00a0dc);
-}
-
-
-    .youtube {
-      background: linear-gradient(to right, #ff0000, #cc0000);
-    }
-
-    .freelancing {
-      background: linear-gradient(to right, #8e2de2, #4a00e0);
-    }
-
-    .coffee {
-  background: linear-gradient(45deg, #ffdd00, #fbb034, #ff8c00);
-  color: #3a2e00;
-  font-weight: 600;
-  box-shadow: 0 0 12px rgba(255, 208, 0, 0.6);
-}
-
-.coffee:hover {
-  transform: scale(1.07) translateY(-3px);
-  box-shadow: 0 0 18px rgba(255, 200, 0, 0.8);
-  filter: brightness(1.1);
-}
-
-
-    .source {
-      background: linear-gradient(to right, #5a67d8, #667eea);
-    }
-
-    .website {
-      background: linear-gradient(to right, #0ea5e9, #06b6d4);
-    }
-
-    .blog {
-      background: linear-gradient(to right, #22c55e, #16a34a);
-    }
-
-    /* 🌟 Footer */
-    footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      opacity: 0;
-      animation: fadeInFooter 2s ease-in-out forwards 2s;
-      background: linear-gradient(90deg, #00f5d4, #00bbf9, #9b5de5, #e52e71, #ff8a00);
-      background-size: 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInFooter 2s ease forwards, gradientShift 6s linear infinite;
-    }
-
-    @keyframes fadeInFooter {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* 📱 Responsive */
-    @media (max-width: 480px) {
-      .profile-name {
-        font-size: 1.5rem;
-      }
-
-      .profile-photo {
-        width: 110px;
-        height: 110px;
-      }
-
-      h2 {
-        font-size: 1.2rem;
-      }
-
-      .link-btn {
-        max-width: 280px;
-      }
-    }
-  </style>
+        /* bottom note */
+        .footer {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="main-card">
-    <img src="./assets/photo.png" alt="Profile Photo" class="profile-photo mx-auto d-block" />
-    <h1 class="profile-name">ᴀᴅɪᴛʏᴀ ᴋᴜᴍᴀʀ ꜱɪɴɢʜ (ᗩ𝐚𝐝𝐢❣️)</h1>
-    <p class="profile-text">
-Digital Creator | Content Strategist | Crafting stories and connecting the world—one click, one idea at a time 🌍✨
-    </p>
 
-    <!-- Social Media -->
-<div class="mt-8">
-  <h2>Social Media</h2>
-  <div class="flex flex-col items-center mt-4">
-    <a href="https://www.facebook.com/people/Aditya-Kumar-Singh/pfbid02Atg32Sntt5aQDUa89X3XaeWvJURh7z27S4wKUFfcn6xfaeRir1jZsTj1SFb76bfjl/?rdid=ANKG2tWWut9IBsiE&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1G4j2BRQea%2F"
-      class="link-btn facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+    <div class="wrapper">
 
-    <a href="https://www.instagram.com/____aks15____"
-      class="link-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+        <!-- Profile -->
+        <div class="profile">
+            <div class="avatar">
+                <img src="./assets/aadi.png">
+            </div>
+            <div class="name">ᴀᴅɪᴛʏᴀ ᴋᴜᴍᴀʀ ꜱɪɴɢʜ </div>
+            <div class="bio">Developer • Designer • Creator</div>
+        </div>
 
-    <!-- 🌐 LinkedIn Button -->
-    <a href="https://www.linkedin.com/in/aditya-kumar-singh-631" 
-      class="link-btn linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-  </div>
-</div>
+        <!-- Links -->
+        <div class="links">
+
+            <!-- Facebook -->
+            <a class="link"
+                href="https://www.facebook.com/people/Aditya-Kumar-Singh/pfbid02Ag9K2gzXFWTqcYxymAsPQVLFNDKwDYUKhhH869hMmU6E41bebeDCtnjdZoSCFFgMl/?ref=pl_edit_ig_profile_ac">
+                <div class="icon fb">
+                    <svg width="22" viewBox="0 0 24 24">
+                        <path
+                            d="M22 12.07C22 6.48 17.52 2 11.93 2 6.34 2 2 6.48 2 12.07c0 5 3.66 9.13 8.44 9.89v-7h-2.4v-3h2.4V9.8c0-2.4 1.43-3.7 3.62-3.7.99 0 2.03.2 2.03.2v2.3h-1.14c-1.13 0-1.49.7-1.49 1.42v1.7h2.52l-.4 3h-2.1v7C18.34 21.2 22 17.07 22 12.07z" />
+                    </svg>
+                </div>
+                <div class="text">
+                    <div class="title">Facebook</div>
+                    <div class="sub">Follow me on Facebook</div>
+                </div>
+            </a>
+
+            <!-- Instagram -->
+            <a class="link" href="https://www.instagram.com/____aks15____">
+                <div class="icon ig">
+                    <svg width="20" viewBox="0 0 24 24">
+                        <path fill="none" stroke="#fff" stroke-width="2"
+                            d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z" />
+                        <circle cx="12" cy="12" r="4" fill="none" stroke="#fff" stroke-width="2" />
+                        <circle cx="17" cy="7" r="1.3" fill="#fff" />
+                    </svg>
+                </div>
+                <div class="text">
+                    <div class="title">Instagram</div>
+                    <div class="sub">@____aks15____</div>
+                </div>
+            </a>
+
+            <!-- Snapchat -->
+            <a class="link" href="https://www.snapchat.com/add/its_aditya387">
+
+                <div class="icon sc" style="font-size:22px;">
+                    👻
+                </div>
+
+                <div class="text">
+                    <div class="title">Snapchat</div>
+                    <div class="sub">Add me on Snapchat</div>
+                </div>
+
+            </a>
 
 
-<!-- Coding Platforms -->
-<div class="mt-8">
-  <h2>Coding Platforms</h2>
-  <div class="flex flex-col items-center mt-4">
-    <a href="https://www.youtube.com/@codewithaditya631" class="link-btn youtube">
-      <i class="fab fa-youtube"></i> YouTube
-    </a>
 
-    <a href="https://cwa631.github.io/Freelance-Website/" class="link-btn freelancing">
-      <i class="fas fa-briefcase"></i> Freelancing
-    </a>
+            <!-- LinkedIn -->
+            <a class="link" href="#">
 
-    <a href="https://cwa631.github.io/source-code-website/" class="link-btn source">
-      <i class="fas fa-code"></i> Source Code
-    </a>
+                <div class="icon linkedin">
+                    <svg width="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="3" fill="#0A66C2" />
+                        <rect x="5" y="10" width="3" height="9" fill="#ffffff" />
+                        <circle cx="6.5" cy="7" r="1.5" fill="#ffffff" />
+                        <path
+                            d="M13 13c0-1.5 1-2.5 2.5-2.5S18 11.5 18 13v6h-3v-5c0-.8-.4-1.2-1-1.2s-1 .4-1 1.2v5h-3v-9h3v1z"
+                            fill="#ffffff" />
+                    </svg>
+                </div>
 
-    <!-- ☕ Buy Me a Coffee Membership -->
-    <a href="https://www.buymeacoffee.com/codewithaditya631/membership" 
-       class="link-btn coffee">
-      <i class="fas fa-mug-hot"></i> Membership 
-    </a>
-  </div>
-</div>
+                <div class="text">
+                    <div class="title">LinkedIn</div>
+                    <div class="sub">Connect with me</div>
+                </div>
+
+            </a>
 
 
-    <!-- Personal Website -->
-    <div class="mt-8">
-      <h2>Personal Website</h2>
-      <div class="flex flex-col items-center mt-4">
-        <a href="https://cwa631.github.io/website/" class="link-btn website"><i class="fas fa-globe"></i> Website</a>
-        <a href="https://cwa631.github.io/blogsphere/" class="link-btn blog"><i class="fas fa-blog"></i> Blog</a>
-      </div>
+            <!-- YouTube -->
+            <a class="link" href="https://youtube.com/@codespark42">
+
+                <div class="icon yt">
+                    <svg width="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000" />
+                        <polygon points="10,9 10,15 16,12" fill="#FFFFFF" />
+                    </svg>
+                </div>
+
+                <div class="text">
+                    <div class="title">YouTube</div>
+                    <div class="sub">Subscribe my channel</div>
+                </div>
+
+            </a>
+
+
+            <!-- Personal Website -->
+            <a class="link" href="https://cwa631.github.io/website/">
+                <div class="icon site">
+                    <svg width="22" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" fill="none" stroke="#fff" stroke-width="2" />
+                        <path d="M2 12h20M12 3c3 4 3 14 0 18" stroke="#fff" stroke-width="2" />
+                    </svg>
+                </div>
+                <div class="text">
+                    <div class="title">My Website</div>
+                    <div class="sub">www.cwa631.com</div>
+                </div>
+            </a>
+
+            <!-- Buy Me a Coffee -->
+            <a class="link" href="https://buymeacoffee.com/codespark42/extras">
+
+                <div class="icon coffee">
+
+                    <svg width="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                        <path d="M3 7h13v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7z" fill="none" stroke="#ffffff"
+                            stroke-width="2" />
+
+                        <path d="M16 9h2a3 3 0 0 1 0 6h-2" fill="none" stroke="#ffffff" stroke-width="2" />
+
+                        <path d="M7 3c1 1 1 2 0 3" stroke="#ffffff" stroke-width="1.5" fill="none" />
+
+                        <path d="M10 2c1 1 1 2 0 3" stroke="#ffffff" stroke-width="1.5" fill="none" />
+
+                    </svg>
+
+                </div>
+
+                <div class="text">
+                    <div class="title">Buy me a coffee</div>
+                    <div class="sub">Support my work</div>
+                </div>
+
+            </a>
+
+
+        </div>
+
+        <div class="footer">
+            © <span id="year"></span> ᴀᴅɪᴛʏᴀ ᴋᴜᴍᴀʀ ꜱɪɴɢʜ (ᗩ𝐚𝐝𝐢❣️). All Rights Reserved.
+        </div>
+
     </div>
-
-    <!-- Footer -->
-    <footer>
-      <p id="copyright"></p>
-    </footer>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const year = new Date().getFullYear();
-      document.getElementById("copyright").innerHTML =
-        `© ${year} Aditya Kumar Singh ❤️. All rights reserved.`;
-    });
-  </script>
 </body>
 
 </html>
